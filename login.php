@@ -35,13 +35,14 @@
         $boolHash = password_verify($passInp, $passSto);
         if ($boolHash = TRUE){
             $cookie_name = "loggedIn";
-            $cookie_value = TRUE;
+            $cookie_value = $userSto;
             setcookie($cookie_name, $cookie_value, time() + (3600), "/");
         }
         if(!isset($_COOKIE["loggedIn"])) {
-            echo "cookie not stored";
+            echo "";
         } else {
-            echo "cookie stored for correctly logged in";
+            header("Location: https://www.gmpauto.co.uk/staffing/login/home.html", true, 301);
+            exit();
         }
     ?>
 </html>
