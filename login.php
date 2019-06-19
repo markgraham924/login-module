@@ -29,14 +29,19 @@
                     $passSto = $row["passSto"];
                 }
             }
-        } else {
-            echo "0 results";
         }
+    
         $conn->close();
         $boolHash = password_verify($passInp, $passSto);
         if ($boolHash = TRUE){
-            echo "correct login";
+            $cookie_name = "loggedIn";
+            $cookie_value = TRUE;
+            setcookie($cookie_name, $cookie_value, time() + (3600), "/");
         }
-
+        if(!isset($_COOKIE["loggedIn"])) {
+            echo "cookie not stored";
+        } else {
+            echo "cookie stored for correctly logged in";
+        }
     ?>
 </html>
