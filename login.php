@@ -30,7 +30,7 @@
                 }
             }
         }
-    
+        $boolHash = FALSE;
         $conn->close();
         $boolHash = password_verify($passInp, $passSto);
         if ($boolHash = TRUE){
