@@ -1,9 +1,7 @@
-<html>
-    <?php
-    
-        setcookie("loggedIn", "loggedOut", time()-3600);
-        header("Location: https://www.gmpauto.co.uk/staffing/login/login.html", true, 301);
-        exit();
 
+    <?php
+        session_unset(); 
+        session_destroy();
     ?>
+    <html>
 </html>

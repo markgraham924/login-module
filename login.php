@@ -1,4 +1,4 @@
-<html>
+
     <?php
 
         $userInp = $_GET["userInp"];
@@ -34,15 +34,14 @@
         $conn->close();
         $boolHash = password_verify($passInp, $passSto);
         if ($boolHash = TRUE){
-            $cookie_name = "loggedIn";
-            $cookie_value = $userSto;
-            setcookie($cookie_name, $cookie_value, time() + (3600), "/");
+            session_start();
+            $_SESSION["username"] = $userSto;
+            $_SESSION["password"] = $passInp;
         }
-        if(!isset($_COOKIE["loggedIn"])) {
-            echo "";
-        } else {
-            header("Location: https://www.gmpauto.co.uk/staffing/login/home.html", true, 301);
-            exit();
-        }
+        
+        header("Location: /staffing/login/home.html", true, 301);
+        exit();
+
     ?>
+<html>
 </html>
