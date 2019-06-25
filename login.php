@@ -32,14 +32,20 @@
         }
         $boolHash = FALSE;
         $conn->close();
-        $boolHash = password_verify($passInp, $passSto);
-        if ($boolHash = TRUE){
-            session_start();
-            $_SESSION["username"] = $userSto;
-            $_SESSION["password"] = $passInp;
+        if ($passInp = "") {
+            return;
+        } else {
+            $boolHash = password_verify($passInp, $passSto);
+            if ($boolHash = TRUE){
+                session_start();
+                echo "session started and varailes created";
+                $_SESSION["username"] = $userInp;
+                $_SESSION["password"] = $passInp;
+            }
         }
         
-        header("Location: /staffing/login/home.html", true, 301);
+        
+        header("Location: /staffing/login/home.php", true, 301);
         exit();
 
     ?>
